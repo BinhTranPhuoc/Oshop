@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
-import { Observable } from 'rxjs';
+import { AuthService } from './core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +9,19 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'Oshop';
-  user: Observable<firebase.User>;
   constructor(
-    private afAuth: AngularFireAuth,
+    private auth: AuthService,
+    private router: Router,
   ) {
-    this.user = afAuth.authState;
+    auth.user.subscribe(rs => {
+      if (rs) {
+        const returnUrl = localStorage.getItem('returnUrl');
+        router.navigateByUrl(returnUrl);
+      }
+    });
   }
 
   logOut() {
-    this.afAuth.auth.signOut();
+    this.auth.logOut();
   }
 }
