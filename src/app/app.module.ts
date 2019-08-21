@@ -20,6 +20,7 @@ import { RouterModule, Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuardService } from './core/auth-guard.service';
 import { AuthService } from './core/auth.service';
+import { AdminGuardServiceService } from './core/admin-guard-service.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AuthService } from './core/auth.service';
   providers: [
     AuthService,
     AuthGuardService,
+    AdminGuardServiceService,
   ],
   bootstrap: [AppComponent]
 })
