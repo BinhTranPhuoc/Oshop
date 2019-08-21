@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthGuardService } from '../core/auth-guard.service';
 import { AuthService } from '../core/auth.service';
 
 @Component({
@@ -10,11 +9,11 @@ import { AuthService } from '../core/auth.service';
 export class LoginComponent {
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
   ) { }
 
   login() {
-    this.auth.login();
+    this.authService.login();
   }
 
 }
