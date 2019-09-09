@@ -16,9 +16,10 @@ export class AppComponent {
     private router: Router,
     private userService: UserService,
   ) {
-    auth.user.subscribe(rs => {
-      if (rs) {
-        this.userService.save(rs);
+    auth.User.subscribe(user => {
+      if (user) {
+        this.userService.save(user);
+
         this.returnUrl = localStorage.getItem('returnUrl');
         router.navigateByUrl(this.returnUrl);
       }
