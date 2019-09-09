@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuardService } from './core/auth-guard.service';
 import { AuthService } from './core/auth.service';
 import { AdminAuthGuardService } from './core/admin-auth-guard.service';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AdminAuthGuardService } from './core/admin-auth-guard.service';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
+    AlertComponent,
   ],
   imports: [
     RouterModule,
