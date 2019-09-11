@@ -22,6 +22,7 @@ import { AuthGuardService } from './core/auth-guard.service';
 import { AuthService } from './core/auth.service';
 import { AdminAuthGuardService } from './core/admin-auth-guard.service';
 import { AlertComponent } from './alert/alert.component';
+import { ProductsListComponent } from './admin/admin-products/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AlertComponent } from './alert/alert.component';
     AdminOrdersComponent,
     LoginComponent,
     AlertComponent,
+    ProductsListComponent,
   ],
   imports: [
     RouterModule,
