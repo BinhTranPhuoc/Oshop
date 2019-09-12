@@ -23,6 +23,10 @@ import { AuthService } from './core/auth.service';
 import { AdminAuthGuardService } from './core/admin-auth-guard.service';
 import { AlertComponent } from './alert/alert.component';
 import { ProductsListComponent } from './admin/admin-products/products-list/products-list.component';
+import { CategoryService } from './services/category.service';
+import { UserService } from './core/user.service';
+import { ProductService } from './services/product.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,12 +51,16 @@ import { ProductsListComponent } from './admin/admin-products/products-list/prod
     AngularFireDatabaseModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule
 
   ],
   providers: [
     AuthService,
     AuthGuardService,
     AdminAuthGuardService,
+    UserService,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
