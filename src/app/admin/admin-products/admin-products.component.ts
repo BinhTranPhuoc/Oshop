@@ -16,7 +16,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   addProduct() {
-    this.router.navigate(['admin/products/newproduct']);
+    this.router.navigate(['admin/products/new']);
   }
 
 }
