@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './core/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from './core/user.service';
+import { AppUser } from './models/appUser';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,9 @@ import { UserService } from './core/user.service';
 export class AppComponent {
   title = 'Oshop';
   returnUrl: string;
+
+  appUser: AppUser;
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -24,6 +28,8 @@ export class AppComponent {
         router.navigateByUrl(this.returnUrl);
       }
     });
+
+    auth.AppUsers.subscribe(appUser => this.appUser = appUser);
   }
 
   logOut() {
