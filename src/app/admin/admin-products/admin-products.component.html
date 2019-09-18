@@ -1,1 +1,30 @@
-<button class="btn btn-primary" (click)="addProduct()">New Product</button>
+<button class="btn btn-primary float-right magin-bottom-5px" (click)="addProduct()">New Product</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pro of products | async">
+            <td>{{pro.name}}</td>
+            <td>{{pro.category}}</td>
+            <td>{{pro.price}}<span>$</span></td>
+            <td>{{pro.description}}</td>
+            <td>
+                <div class="row">
+                    <div class="col-sm-3">
+                         <a class="btn btn-secondary" [routerLink]="[ '/admin/products/', pro.$key ]">Edit</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-danger" type="submit" (change)="delete()">Delete</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
