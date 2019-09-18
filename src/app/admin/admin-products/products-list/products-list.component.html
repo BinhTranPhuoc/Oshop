@@ -1,27 +1,55 @@
-<form #f="ngForm" (ngSubmit)="addProduct(f.value)">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input ngModel class="form-control" id="name" name="name">
+<div class="row">
+    <div class="col-md-6">
+        <form #f="ngForm" (ngSubmit)="addProduct(f.value)">
+            <div class="form-group">
+                <label class="font-size-12px font-bold">
+                    <span class="color-red">※</span>NAME
+                </label>
+                <input #name="ngModel" [(ngModel)]="product.name" class="form-control" id="name" name="name" type="text" required>
+                <p class="text-danger" *ngIf="name?.errors?.required && f.submitted">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> This field is required.
+                </p>
+            </div>
+        
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select #category="ngModel" [(ngModel)]="product.category" id="category" class="form-control" name="category" required>
+                    <option *ngFor="let cate of categories | async" [value]="cate.$key">
+                        {{ cate.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price"><span class="color-red">※</span>Price</label>
+                <input #price="ngModel" [(ngModel)]="product.price" class="form-control" id="price" name="price" required>
+                <p class="text-danger" *ngIf="price?.errors?.required && f.submitted">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> This field is required.
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="image">ImageURL</label>
+                <input #imageURL="ngModel" [(ngModel)]="product.imageURL" class="form-control" id="imageURL" name="imageURL">
+            </div>
+        
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea #description="ngModel" [(ngModel)]="product.description" class="form-control" id="description" name="description" rows="4" cols="50" maxlength="250"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="margin-auto btn btn-primary">Add</button>
+                <button class="margin-auto btn btn-secondary">Cancel</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="category">Category</label>
-        <select ngModel id="category" class="form-control" name="category">
-            <option value=""></option>
-            <option *ngFor="let cate of categories | async" [value]="cate.$key">
-                {{ cate.name }}
-            </option>
-        </select>
+    <div class="col-md-6">
+        <div class="card" style="width: 20rem;">
+            <img [src]="imageURL.value" class="card-img-top" alt="card image cap" *ngIf="product.imageURL"> 
+            <div class="card-body">
+              <h4 class="card-title">{{ product.name }}</h4>
+              <p class="card-text">{{ product.price | currency:'USD':true }}</p>
+              <p class="card-text">{{ product.description }}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
     </div>
-    <div class="form-group">
-        <label for="price">Price</label>
-        <input ngModel class="form-control" id="price" name="price">
-    </div>
-    <div class="form-group">
-            <label for="image">Image</label>
-            <input ngModel class="form-control" id="image" name="image" type="file">
-        </div>
-    <div class="form-group">
-        <button class="btn btn-primary">Add</button>
-        <button class="btn btn-default">Cancel</button>
-    </div>
-</form>
+</div>
