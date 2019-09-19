@@ -27,6 +27,7 @@ import { CategoryService } from './services/category.service';
 import { UserService } from './core/user.service';
 import { ProductService } from './services/product.service';
 import { FormsModule } from '@angular/forms';
+import { SidebarNavComponent } from './admin/sidebar-nav/sidebar-nav.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     AlertComponent,
     ProductsListComponent,
+    SidebarNavComponent,
+    
   ],
   imports: [
     RouterModule,
@@ -51,7 +54,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireDatabaseModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
 
   ],
   providers: [
