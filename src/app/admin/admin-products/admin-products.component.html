@@ -21,7 +21,7 @@
                          <a class="btn btn-secondary" [routerLink]="[ '/admin/products/', pro.$key ]">Edit</a>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-danger" type="submit" (change)="delete()">Delete</button>
+                        <button class="btn btn-danger" type="submit" (click)="delete(pro.$key)">Delete</button>
                     </div>
                 </div>
             </td>
