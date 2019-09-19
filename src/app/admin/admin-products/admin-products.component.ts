@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductsListComponent } from './products-list/products-list.component';
 
@@ -9,13 +9,11 @@ import { ProductsListComponent } from './products-list/products-list.component';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-
   products;
   constructor(
     private router: Router,
-    private productService: ProductService,
-    private productList: ProductsListComponent,
-  ) {
+    private productService: ProductService
+  ) {   
     this.getlistproducts();
    }
 
@@ -30,7 +28,10 @@ export class AdminProductsComponent implements OnInit {
     this.products = this.productService.getAllProducts();
   }
 
-  delete() {
-    this.productList.delete();
+  delete(productId) {
+    if (confirm('Are you sure, you want to delete this products?')) {
+      this.productService.delete(productId);
+      this.router.navigate(['/admin/products']);
+    }
   }
 }

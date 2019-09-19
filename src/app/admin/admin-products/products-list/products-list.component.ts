@@ -47,6 +47,6 @@ export class ProductsListComponent implements OnInit {
       this.productService.delete(this.id);
       this.router.navigate(['/admin/products']);
     }
-    return false;
+
   }
 }
