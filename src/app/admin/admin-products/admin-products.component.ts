@@ -1,19 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
-import { ProductsListComponent } from './products-list/products-list.component';
+import { Subscription, from } from 'rxjs';
+import { Product } from 'src/app/models/product';
+import { DataTableResource } from 'ng-angular8-datatable';
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
-  products;
+export class AdminProductsComponent implements OnInit, OnDestroy {
+  products: Product[];
+  subscription: Subscription;
+  filterProd: any[];
+  tableResource: DataTableResource<Product>;
+  items: Product[];
+  itemCount: number;
+
   constructor(
     private router: Router,
     private productService: ProductService
-  ) {   
+  ) {
     this.getlistproducts();
    }
 
@@ -25,7 +33,11 @@ export class AdminProductsComponent implements OnInit {
   }
 
   getlistproducts() {
-    this.products = this.productService.getAllProducts();
+    this.subscription = this.productService.getAllProducts().subscribe(rs => {
+      this.filterProd = this.products = rs;
+
+      this.initializeTable(this.products);
+    });
   }
 
   delete(productId) {
@@ -33,5 +45,22 @@ export class AdminProductsComponent implements OnInit {
       this.productService.delete(productId);
       this.router.navigate(['/admin/products']);
     }
+  }
+
+  filter(query: string) {
+    this.filterProd = (query) ?
+    this.products.filter(f => f.name.toLowerCase().includes(query.toLowerCase())) : this.products;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  private initializeTable(products: Product[]) {
+    this.tableResource = new DataTableResource(products);
+    this.tableResource.query({ offset: 0 })
+    .then(items => this.items = items);
+
+    this.tableResource.count().then(count => this.itemCount = count);
   }
 }
