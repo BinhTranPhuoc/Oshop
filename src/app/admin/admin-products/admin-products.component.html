@@ -1,5 +1,12 @@
-<button class="btn btn-primary float-right magin-bottom-5px" (click)="addProduct()">New Product</button>
-<table class="table">
+<div class="row">
+    <div class="col-md-4">
+        <button class="btn btn-primary float-right magin-bottom-5px" (click)="addProduct()">New Product</button>
+    </div>
+    <div class="col-md-6">
+        <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+    </div>
+</div>
+<!-- <table class="table">
     <thead>
         <tr>
             <th>Name</th>
@@ -10,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pro of products | async">
+        <tr *ngFor="let pro of filterProd">
             <td>{{pro.name}}</td>
             <td>{{pro.category}}</td>
             <td>{{pro.price}}<span>$</span></td>
@@ -27,4 +34,21 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+<data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItem($event)">
+    <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true">
+    <data-table-column [property]="'price'" [header]="'Price'" [sortable]="true" [resizable]="true">
+    <ng-template #dataTableCell let-item="product">
+        {{ product.price | currency: 'USD' : true }}
+    </ng-template>
+    </data-table-column>
+    <data-table-column [property]="'$key'">
+    <ng-template #dataTableCell let-item="product">
+        <a class="btn btn-secondary" [routerLink]="[ '/admin/products/', pro.$key ]">Edit</a>
+    </ng-template>
+    <ng-template #dataTableCell let-item="product">
+        <button class="btn btn-danger" type="submit" (click)="delete(pro.$key)">Delete</button>
+        </ng-template>
+    </data-table-column>
+
+</data-table>

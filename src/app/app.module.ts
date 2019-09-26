@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
@@ -27,7 +26,7 @@ import { CategoryService } from './services/category.service';
 import { UserService } from './core/user.service';
 import { ProductService } from './services/product.service';
 import { FormsModule } from '@angular/forms';
-import { SidebarNavComponent } from './admin/sidebar-nav/sidebar-nav.component';
+import { DataTableModule } from 'ng-angular8-datatable';
 
 @NgModule({
   declarations: [
@@ -43,8 +42,7 @@ import { SidebarNavComponent } from './admin/sidebar-nav/sidebar-nav.component';
     LoginComponent,
     AlertComponent,
     ProductsListComponent,
-    SidebarNavComponent,
-    
+
   ],
   imports: [
     RouterModule,
@@ -55,6 +53,7 @@ import { SidebarNavComponent } from './admin/sidebar-nav/sidebar-nav.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    DataTableModule,
 
   ],
   providers: [
