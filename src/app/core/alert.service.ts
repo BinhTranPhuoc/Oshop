@@ -10,7 +10,7 @@ import { filter } from 'minimatch';
 })
 export class AlertService {
 
-  private subject = new Subject<ALERT>(); 
+  private subject = new Subject<ALERT>();
   private keepAfterRouterChange = false;
 
   constructor(
@@ -32,7 +32,7 @@ export class AlertService {
 
 
   clearMess(alertId?: string) {
-    this.subject.next(new ALERT({ alertId }))
+    this.subject.next(new ALERT({ alertId }));
   }
 
   // main alert method
@@ -42,18 +42,18 @@ export class AlertService {
   }
 
   success(message: string, alertId?: string) {
-    this.alert(new ALERT({ message, type: ALERTTYPE.Success, alertId}))
+    this.alert(new ALERT({ message, type: ALERTTYPE.Success, alertId}));
   }
 
   error(message: string, alertId?: string) {
-    this.alert(new ALERT({ message, type: ALERTTYPE.Error, alertId}))
+    this.alert(new ALERT({ message, type: ALERTTYPE.Error, alertId}));
   }
 
   warning(message: string, alertId?: string) {
-    this.alert(new ALERT({ message, type: ALERTTYPE.Warning, alertId}))
+    this.alert(new ALERT({ message, type: ALERTTYPE.Warning, alertId}));
   }
 
-  onAlert(alertId?: string) : Observable<ALERT> {
-    return this.subject.asObservable().pipe(filter(x => x && x.alertId === alertId));
-  }
+  // onAlert(alertId?: string) : Observable<ALERT> {
+  //   return this.subject.asObservable().pipe(filter(x => x && x.alertId === alertId));
+  // }
 }
