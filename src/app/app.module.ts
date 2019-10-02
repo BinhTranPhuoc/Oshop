@@ -26,7 +26,8 @@ import { CategoryService } from './services/category.service';
 import { UserService } from './core/user.service';
 import { ProductService } from './services/product.service';
 import { FormsModule } from '@angular/forms';
-import { DataTableModule } from 'ng-angular8-datatable';
+import { MatTableModule } from '@angular/material/table';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { DataTableModule } from 'ng-angular8-datatable';
     LoginComponent,
     AlertComponent,
     ProductsListComponent,
+    
 
   ],
   imports: [
@@ -53,7 +55,8 @@ import { DataTableModule } from 'ng-angular8-datatable';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    DataTableModule,
+    MatTableModule,
+    DataTablesModule
 
   ],
   providers: [
