@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Subscription, from } from 'rxjs';
 import { Product } from 'src/app/models/product';
-import { DataTableResource } from 'ng-angular8-datatable';
 
 @Component({
   selector: 'app-admin-products',
@@ -11,18 +10,23 @@ import { DataTableResource } from 'ng-angular8-datatable';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
+  
+
   products: Product[];
   subscription: Subscription;
   filterProd: any[];
-  tableResource: DataTableResource<Product>;
+  // tableResource: DataTableResource<Product>;
   items: Product[];
   itemCount: number;
+  displayedColumns: string[] = ['Name', 'Category', 'Price', 'Description'];
+  dataSource = [];
 
   constructor(
     private router: Router,
     private productService: ProductService
   ) {
     this.getlistproducts();
+    this.dataSource = this.filterProd;
    }
 
   ngOnInit() {
@@ -36,7 +40,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.subscription = this.productService.getAllProducts().subscribe(rs => {
       this.filterProd = this.products = rs;
 
-      this.initializeTable(this.products);
+      // this.initializeTable(this.products);
     });
   }
 
@@ -56,11 +60,11 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private initializeTable(products: Product[]) {
-    this.tableResource = new DataTableResource(products);
-    this.tableResource.query({ offset: 0 })
-    .then(items => this.items = items);
+  // private initializeTable(products: Product[]) {
+  //   this.tableResource = new DataTableResource(products);
+  //   this.tableResource.query({ offset: 0 })
+  //   .then(items => this.items = items);
 
-    this.tableResource.count().then(count => this.itemCount = count);
-  }
+  //   this.tableResource.count().then(count => this.itemCount = count);
+  // }
 }
