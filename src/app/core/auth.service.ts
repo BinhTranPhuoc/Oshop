@@ -35,7 +35,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  get AppUsers(): Observable<AppUser> {
+  getAppUsers(): Observable<AppUser> {
     return this.User
       .switchMap(user => {
         if (user) {
