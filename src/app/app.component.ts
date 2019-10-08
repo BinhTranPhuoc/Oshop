@@ -22,7 +22,7 @@ export class AppComponent {
     private userService: UserService,
     private alertService: AlertService,
   ) {
-    auth.User.subscribe(user => {
+    this.auth.User.subscribe(user => {
       if (user) {
         this.userService.save(user);
 
@@ -31,7 +31,11 @@ export class AppComponent {
       }
     });
 
-    auth.AppUsers.subscribe(appUser => this.appUser = appUser);
+    this.auth.getAppUsers().subscribe(res => {
+      if (res) {
+        this.appUser = res;
+      }
+    });
   }
 
   logOut() {
