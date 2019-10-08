@@ -14,7 +14,7 @@ export class AuthGuardService implements CanActivate {
 
   // protecting router
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.auth.AppUsers.map(user => {
+    return this.auth.getAppUsers().map(user => {
       if (user) {
         return true;
       }
