@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Subscription, from } from 'rxjs';
@@ -26,7 +26,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     private productService: ProductService
   ) {
     this.getlistproducts();
-    this.dataSource = this.filterProd;
    }
 
   ngOnInit() {
@@ -39,7 +38,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   getlistproducts() {
     this.subscription = this.productService.getAllProducts().subscribe(rs => {
       this.filterProd = this.products = rs;
-
+      this.dataSource = this.filterProd;
       // this.initializeTable(this.products);
     });
   }
