@@ -14,9 +14,6 @@ import { AdminAuthGuardService } from './core/admin-auth-guard.service';
 import { ProductsListComponent } from './admin/admin-products/products-list/products-list.component';
 
 const routers: Routes  = [
-  // { path: '',
-  //   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  // },
 
   { path: '',
     loadChildren: './admin/admin.module#AdminModule',

@@ -28,6 +28,7 @@ import { ProductService } from './services/product.service';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { DataTablesModule } from 'angular-datatables';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,12 @@ import { DataTablesModule } from 'angular-datatables';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AppRoutingModule,
+
+    NgbModule,
+    FormsModule,
+    MatTableModule,
+    DataTablesModule,
+    MatPaginatorModule
   ],
   providers: [
     AuthService,
