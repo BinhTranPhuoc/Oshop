@@ -1,0 +1,27 @@
+.user-img {
+    height: 45px !important;
+    object-fit: cover;
+}
+.user-panel {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.user-panel .info {
+    padding: 5px 5px 5px 15px;
+    line-height: 1;
+    left: 55px;
+    color: #fff;
+    position: absolute;
+    float: left;
+    font-size: 13px;;
+}
+.image {
+    float: left;
+}
+
+.fas {
+    width: 30px;
+}
