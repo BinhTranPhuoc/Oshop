@@ -33,19 +33,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ProductsComponent,
-    ShoppingCartComponent,
-    CheckOutComponent,
-    OrderSuccessComponent,
-    MyOrderComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
+    // HomeComponent,
+    // ProductsComponent,
+    // ShoppingCartComponent,
+    // CheckOutComponent,
+    // OrderSuccessComponent,
+    // MyOrderComponent,
     LoginComponent,
     AlertComponent,
-    ProductsListComponent,
-    
-
   ],
   imports: [
     RouterModule,
@@ -54,12 +49,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AppRoutingModule,
+
     NgbModule,
     FormsModule,
     MatTableModule,
     DataTablesModule,
     MatPaginatorModule
-
   ],
   providers: [
     AuthService,
