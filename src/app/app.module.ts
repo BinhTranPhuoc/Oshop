@@ -34,7 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   declarations: [
     AppComponent,
     // HomeComponent,
-    // ProductsComponent,
+    ProductsComponent,
     // ShoppingCartComponent,
     // CheckOutComponent,
     // OrderSuccessComponent,
