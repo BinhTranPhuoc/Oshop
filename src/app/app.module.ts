@@ -29,6 +29,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { DataTablesModule } from 'angular-datatables';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoadingSpinnerComponent } from './share/template/loading-spinner.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     // MyOrderComponent,
     LoginComponent,
     AlertComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     RouterModule,
@@ -54,7 +57,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatTableModule,
     DataTablesModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxSpinnerModule
   ],
   providers: [
     AuthService,

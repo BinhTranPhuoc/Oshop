@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppUser } from '../models/appUser';
 import { UserService } from './user.service';
 import 'rxjs/add/observable/of';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private spinnerService: NgxSpinnerService,
   ) {
     this.User = afAuth.authState;
   }
@@ -32,7 +34,7 @@ export class AuthService {
 
   logOut() {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/login']);
+    localStorage.clear();
   }
 
   getAppUsers(): Observable<AppUser> {
