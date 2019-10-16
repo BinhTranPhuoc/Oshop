@@ -15,17 +15,12 @@ import { ProductsListComponent } from './admin/admin-products/products-list/prod
 
 const routers: Routes  = [
 
-  { path: 'admin',
+  { path: 'home', component: ProductsComponent },
+  { path: '',
     loadChildren: './admin/admin.module#AdminModule',
     canActivate: [AuthGuardService, AdminAuthGuardService]
   },
-  
-  { path: 'login', 
-    component: LoginComponent
-  },
-
-  { path: '', component: ProductsComponent },
-
+  { path: 'login', component: LoginComponent },
   // { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService] },
   // { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
   // { path: 'my/order', component: MyOrderComponent, canActivate: [AuthGuardService] },
