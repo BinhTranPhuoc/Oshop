@@ -1,8 +1,22 @@
 
-.color-red {
-    color: red;
+.float-right {
+    float: right;
 }
 
-.margin-auto {
-    margin-left: 8px;
+.magin-bottom-5px {
+    margin-bottom: 5px;
 }
+
+table {
+    width: 100%;
+}
+
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }

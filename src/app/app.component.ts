@@ -29,7 +29,6 @@ export class AppComponent {
     this.auth.User.subscribe(user => {
       if (user) {
         this.userService.save(user);
-
         this.returnUrl = localStorage.getItem('returnUrl');
         router.navigateByUrl(this.returnUrl);
       }
@@ -41,10 +40,10 @@ export class AppComponent {
   checkUserLogin() {
     this.spinnerService.show();
     this.auth.getAppUsers().subscribe(res => {
-      debugger;
       if (res) {
         if (res.isAdmin == true) {
           this.appUser = res;
+          this.router.navigate(['/admin']);
         }
         else {
           this.appUser = res;

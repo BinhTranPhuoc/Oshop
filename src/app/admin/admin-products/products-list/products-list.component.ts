@@ -1,52 +1,67 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/services/category.service';
-import { ProductService } from 'src/app/services/product.service';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/take';
-
+import { ProductService } from 'src/app/services/product.service';
+import { Subscription, from } from 'rxjs';
+import { Product } from 'src/app/models/product';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
-  categories;
-  product = {};
-  id;
+export class ProductsListComponent implements OnInit,  OnDestroy {
+
+  products: Product[];
+  subscription: Subscription;
+  filterProd: any[];
+  // tableResource: DataTableResource<Product>;
+  items: Product[];
+  itemCount: number;
+  displayedColumns: string[] = ['Name', 'Category', 'Price', 'Description'];
+  dataSource = MatTableDataSource[];
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    categoryService: CategoryService,
-    private productService: ProductService,
-  ) {
-    this.categories = categoryService.getCategories();
-    this.updateProduct();
-  }
+    private productService: ProductService
+   ) { 
+    this.getlistproducts();
+    this.dataSource = new MatTableDataSource();
+   }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  addProduct(product) {
-    if (this.id) {
-      this.productService.updateProduct(this.id, product);
-    } else {
-      this.productService.creatProduct(product);
-    }
-    this.router.navigate(['/admin/products']);
+  addProduct() {
+    this.router.navigate(['admin/products/new']);
   }
 
-  updateProduct() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) {
-      this.productService.getProduct(this.id).take(1).subscribe( rs => this.product = rs);
-    }
+  getlistproducts() {
+    this.subscription = this.productService.getAllProducts().subscribe(rs => {
+      this.filterProd = this.products = rs;
+      this.dataSource = this.filterProd;
+      // this.initializeTable(this.products);
+    });
   }
 
-  delete() {
+  delete(productId) {
     if (confirm('Are you sure, you want to delete this products?')) {
-      this.productService.delete(this.id);
+      this.productService.delete(productId);
       this.router.navigate(['/admin/products']);
     }
+  }
 
+  filter(query: string) {
+    this.filterProd = (query) ?
+    this.products.filter(f => f.name.toLowerCase().includes(query.toLowerCase())) : this.products;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
