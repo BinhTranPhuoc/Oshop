@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../core/auth.service';
 import { UserService } from '../core/user.service';
+import { ProductAddComponent } from './admin-products/product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { UserService } from '../core/user.service';
     AdminProductsComponent,
     AdminOrdersComponent,
     ProductsListComponent,
+    ProductAddComponent,
   ],
   imports: [
     CommonModule,

@@ -8,15 +8,16 @@ import { ProductsComponent } from '../products/products.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { ProductsListComponent } from './admin-products/products-list/products-list.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { ProductAddComponent } from './admin-products/product-add/product-add.component';
 
 const routers: Routes = [
   { path: '', component: AdminComponent, 
     canActivate: [AuthGuardService, AdminAuthGuardService],
     children: [ 
-      { path: '', component: AdminProductsComponent,canActivate: [AuthGuardService, AdminAuthGuardService] },
+      { path: '', component: ProductsListComponent,canActivate: [AuthGuardService, AdminAuthGuardService] },
       // { path: 'admin/products', component: AdminProductsComponent, canActivateChild: [AuthGuardService, AdminAuthGuardService] },
-      { path: 'admin/products/new', component: ProductsListComponent, canActivateChild: [AuthGuardService, AdminAuthGuardService] },
-      { path: 'admin/products/:id', component: ProductsListComponent, canActivateChild: [AuthGuardService, AdminAuthGuardService] },
+      { path: 'admin/products/new', component: ProductAddComponent, canActivateChild: [AuthGuardService, AdminAuthGuardService] },
+      { path: 'admin/products/:id', component: ProductAddComponent, canActivateChild: [AuthGuardService, AdminAuthGuardService] },
       { path: 'admin/orders', component: AdminOrdersComponent, canActivateChild: [AuthGuardService, AdminAuthGuardService] },
     ] 
   },
